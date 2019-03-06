@@ -1,10 +1,199 @@
-object formProjectSettings: TformProjectSettings
-  Left = 298
-  Height = 240
-  Top = 127
-  Width = 320
-  Caption = 'Project Settings'
+object formProjectProperties: TformProjectProperties
+  Left = 483
+  Height = 381
+  Top = 172
+  Width = 942
+  Caption = 'Project Properties'
+  ClientHeight = 381
+  ClientWidth = 942
   OnCreate = FormCreate
+  OnMouseUp = FormMouseUp
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
+  object gbBasicInformation: TGroupBox
+    Left = 6
+    Height = 376
+    Top = 0
+    Width = 454
+    Anchors = [akTop, akLeft, akBottom]
+    Caption = 'Basic Information'
+    ClientHeight = 356
+    ClientWidth = 450
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 8
+      Height = 16
+      Top = 8
+      Width = 79
+      Caption = 'Project Name'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Height = 16
+      Top = 40
+      Width = 98
+      Caption = 'Project Location '
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 16
+      Top = 72
+      Width = 63
+      Caption = 'Contract Id'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 16
+      Top = 104
+      Width = 118
+      Caption = 'Implementation Year'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 16
+      Top = 136
+      Width = 145
+      Caption = 'Original Contract Amount'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 8
+      Height = 16
+      Top = 168
+      Width = 146
+      Caption = 'Revised Contract Amount'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 8
+      Height = 16
+      Top = 200
+      Width = 48
+      Caption = 'Duration'
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentColor = False
+      ParentFont = False
+    end
+    object etProjectName: TEdit
+      Left = 176
+      Height = 25
+      Top = -1
+      Width = 264
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 0
+    end
+    object etProjectLocation: TEdit
+      Left = 176
+      Height = 25
+      Top = 31
+      Width = 264
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 1
+    end
+    object exContractId: TEdit
+      Left = 176
+      Height = 25
+      Top = 63
+      Width = 264
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 2
+    end
+    object etImplementationYear: TEdit
+      Left = 304
+      Height = 25
+      Top = 95
+      Width = 136
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 3
+    end
+    object etOriginalContractAmount: TEdit
+      Left = 176
+      Height = 25
+      Top = 127
+      Width = 264
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 4
+    end
+    object etRevisedContractAmount: TEdit
+      Left = 176
+      Height = 25
+      Top = 159
+      Width = 264
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 5
+    end
+    object etDuration: TEdit
+      Left = 304
+      Height = 25
+      Top = 191
+      Width = 136
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      TabOrder = 6
+    end
+  end
 end

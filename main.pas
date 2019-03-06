@@ -6,9 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LCLType,
-           Menus, StdCtrls, ComCtrls, ExtCtrls,
-           DateTimePicker, TAGraph,
-           project_settings, preference, fpjson;
+  Menus, StdCtrls, ComCtrls, ExtCtrls,
+  DateTimePicker, TAGraph,
+  project_settings, preference, fpjson;
+
 type
 
   { TmainForm }
@@ -69,10 +70,11 @@ type
 
 var
   mainForm: TmainForm;
+  gJObject : tJSONObject;
 
-// Dialogs
 procedure showExitDialog;
-function createEmptyProject : UTF8String;
+procedure reload;
+function createEmptyProject: UTF8String;
 
 implementation
 
@@ -84,7 +86,7 @@ implementation
 procedure TmainForm.FormCreate(Sender: TObject);
 begin
   // Maximize the window
-  mainForm.WindowState:=TWindowState.wsMaximized;
+  mainForm.WindowState := TWindowState.wsMaximized;
   stProjectName.Caption := getString;
   // Application.MessageBox(pchar(getPreferenceString), pchar('Dir'));
 end;
@@ -95,13 +97,13 @@ var
 begin
   boxStyle := MB_ICONQUESTION + MB_YESNO;
   reply := Application.MessageBox('Are you sure you want to quit the application?',
-           'Quit', boxStyle);
-  if reply = IDNO then
-     // Prevent the form from closing
-     CanClose := false
+    'Quit', boxStyle);
+  if reply = idNo then
+    // Prevent the form from closing
+    CanClose := False
   else
-     setProjectNew(false);
-     Application.Terminate;
+    setProjectNew(False);
+  Application.Terminate;
 end;
 
 procedure TmainForm.gbProjectInformationClick(Sender: TObject);
@@ -128,29 +130,29 @@ end;
 
 procedure TmainForm.mnuNewProjectClick(Sender: TObject);
 var
-    tFile: TextFile;
+  tFile: TextFile;
 begin
   saveDlg.DefaultExt := 'ptm';
   saveDlg.Filter := 'Project Timeline Monitoring|*.ptm';
   if saveDlg.Execute then
-     { Now create a new project file }
-     AssignFile(tFile, saveDlg.Filename);
-     try
-        Rewrite(tFile);
-        Write(tFile, createEmptyProject);
+    { Now create a new project file }
+    AssignFile(tFile, saveDlg.Filename);
+  try
+    Rewrite(tFile);
+    Write(tFile, createEmptyProject);
 
-        setProjectNew(true);
+    setProjectNew(True);
 
-     finally
-        CloseFile(tFile);
-     end;
+  finally
+    CloseFile(tFile);
+  end;
 end;
 
 { Initialize and returns new json for the new file }
-function createEmptyProject : UTF8String;
+function createEmptyProject: UTF8String;
 var
-  jData : TJSONData;
-  jObject : TJSONObject;
+  jData: TJSONData;
+  jObject: TJSONObject;
 begin
   jData := GetJSON('{}');
   jObject := TJSONObject(jData);
@@ -164,7 +166,7 @@ end;
 
 procedure TmainForm.mnuProjectSettingsClick(Sender: TObject);
 begin
-  formProjectSettings.ShowModal;
+  formProjectProperties.ShowModal;
 end;
 
 procedure TmainForm.stContractIdClick(Sender: TObject);
@@ -207,15 +209,20 @@ var
 begin
   boxStyle := MB_ICONQUESTION + MB_YESNO;
   reply := Application.MessageBox('Are you sure you want to quit the application?',
-           'Quit', boxStyle);
+    'Quit', boxStyle);
   {*
   if reply = IDYES then
      setProjectNew(false);
      Application.Terminate; *}
-  Application.MessageBox(pChar(reply), 'Reply');
+  Application.MessageBox(PChar(reply), 'Reply');
 
 end;
 // End of quit dialog
 
-end.
 
+procedure reload;
+begin
+
+end;
+
+end.

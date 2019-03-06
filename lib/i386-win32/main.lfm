@@ -351,13 +351,14 @@ object mainForm: TmainForm
       Caption = 'Project'
       object mnuNewProject: TMenuItem
         Caption = 'New Project'
+        ShortCut = 16462
         OnClick = mnuNewProjectClick
       end
       object mnuOpenProject: TMenuItem
         Caption = 'Open Project'
       end
       object mnuProjectSettings: TMenuItem
-        Caption = 'Project Settings'
+        Caption = 'Project Properties'
         OnClick = mnuProjectSettingsClick
       end
       object MenuItem2: TMenuItem

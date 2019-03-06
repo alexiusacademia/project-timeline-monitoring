@@ -19,7 +19,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TmainForm, mainForm);
-  Application.CreateForm(TFormProjectSettings, formProjectSettings);
+  Application.CreateForm(TformProjectProperties, formProjectProperties);
   Application.Run;
 end.
 
