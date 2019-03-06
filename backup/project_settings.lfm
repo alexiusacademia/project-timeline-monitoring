@@ -1,0 +1,10 @@
+object formProjectSettings: TformProjectSettings
+  Left = 298
+  Height = 240
+  Top = 127
+  Width = 320
+  Caption = 'formProjectSettings'
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.0.4'
+end
