@@ -8,8 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LCLType,
            Menus, StdCtrls, ComCtrls, ExtCtrls,
            DateTimePicker, TAGraph,
-           project_settings, preference;
-{ TODO : Create Unit preference for storing some project temporary setting to a json file. }
+           project_settings, preference, fpjson;
 type
 
   { TmainForm }
@@ -73,8 +72,10 @@ var
 
 // Dialogs
 procedure showExitDialog;
+function createEmptyProject : UTF8String;
 
 implementation
+
 
 {$R *.lfm}
 
@@ -127,20 +128,38 @@ end;
 
 procedure TmainForm.mnuNewProjectClick(Sender: TObject);
 var
-    fsOut: TFileStream;
-
+    tFile: TextFile;
 begin
   saveDlg.DefaultExt := 'ptm';
   saveDlg.Filter := 'Project Timeline Monitoring|*.ptm';
   if saveDlg.Execute then
+     { Now create a new project file }
+     AssignFile(tFile, saveDlg.Filename);
      try
-        fsOut := TFileStream.Create( saveDlg.Filename, fmCreate);
-        fsOut.Free;
+        Rewrite(tFile);
+        Write(tFile, createEmptyProject);
+
         setProjectNew(true);
-     except
-        on E:Exception do
-           writeln('Error. ', E.Message);
+
+     finally
+        CloseFile(tFile);
      end;
+end;
+
+{ Initialize and returns new json for the new file }
+function createEmptyProject : UTF8String;
+var
+  jData : TJSONData;
+  jObject : TJSONObject;
+begin
+  jData := GetJSON('{}');
+  jObject := TJSONObject(jData);
+  { Add elements }
+  jObject.Add('project_name', '');
+  jObject.Add('contract_id', '');
+  jObject.Add('project_location', '');
+  jObject.Add('implementation_year', '');
+  createEmptyProject := jData.FormatJSON;
 end;
 
 procedure TmainForm.mnuProjectSettingsClick(Sender: TObject);
@@ -189,9 +208,12 @@ begin
   boxStyle := MB_ICONQUESTION + MB_YESNO;
   reply := Application.MessageBox('Are you sure you want to quit the application?',
            'Quit', boxStyle);
+  {*
   if reply = IDYES then
      setProjectNew(false);
-     Application.Terminate;
+     Application.Terminate; *}
+  Application.MessageBox(pChar(reply), 'Reply');
+
 end;
 // End of quit dialog
 
