@@ -153,6 +153,7 @@ function createEmptyProject: UTF8String;
 var
   jData: TJSONData;
   jObject: TJSONObject;
+  jArrayOriginal, jArraySuspensions, jArrayAccomplishments: TJSONArray;
 begin
   jData := GetJSON('{}');
   jObject := TJSONObject(jData);
@@ -161,6 +162,17 @@ begin
   jObject.Add('contract_id', '');
   jObject.Add('project_location', '');
   jObject.Add('implementation_year', '');
+  jObject.Add('duration', 0);
+
+  { S-Curve Original }
+  jArrayOriginal := TJSONArray.Create;
+  jArraySuspensions := TJSONArray.Create;
+  jArrayAccomplishments := TJSONArray.Create;
+
+  jObject.Add('original-schedule', jArrayOriginal);
+  jObject.Add('suspensions', jArraySuspensions);
+  jObject.Add('accomplishments', jArrayAccomplishments);
+
   createEmptyProject := jData.FormatJSON;
 end;
 
